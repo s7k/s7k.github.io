@@ -1,5 +1,31 @@
-<html>
-  <body>
-    <h1>hello world</h1>
-  </body>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>s7k</title>
+<link rel="icon" href="images/icon.png">
+<style>
+  :root { color-scheme: light dark; --fg: #222; --bg: #fff; --sub: #666; --link: #0a58ca; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #ddd; --bg: #16181c; --sub: #999; --link: #79a8ff; } }
+  body { margin: 0 auto; max-width: 640px; padding: 32px 16px; font: 16px/1.7 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+  header { display: flex; align-items: center; gap: 12px; }
+  header img { width: 48px; height: 48px; border-radius: 8px; }
+  h1 { margin: 0; font-size: 1.6em; }
+  a { color: var(--link); }
+  ul { padding: 0; list-style: none; }
+  li { padding: 10px 0; border-bottom: 1px solid color-mix(in srgb, var(--sub) 30%, transparent); }
+  li span { display: block; color: var(--sub); font-size: 0.9em; }
+</style>
+</head>
+<body>
+<header>
+  <img src="images/icon.png" alt="">
+  <h1>s7k</h1>
+</header>
+<ul>
+  <li><a href="wphi/">WPHI</a><span>PHI のクライアント。Windows・macOS・Linux で動く</span></li>
+  <li><a href="https://github.com/s7k">GitHub</a><span>github.com/s7k</span></li>
+</ul>
+</body>
 </html>

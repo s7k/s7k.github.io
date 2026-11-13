@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WPHI</title>
+<meta name="description" content="PHI のクライアント。Philly を作り直し、Windows・macOS・Linux で動くようにした。">
+<link rel="icon" href="icon.svg">
+<style>
+  :root { color-scheme: light dark; --fg: #222; --bg: #fff; --sub: #666; --line: #ddd; --link: #0a58ca; --accent: #b3261e; --code: #f3f3f3; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #ddd; --bg: #16181c; --sub: #999; --line: #333; --link: #79a8ff; --accent: #e5554b; --code: #23262b; } }
+  body { margin: 0 auto; max-width: 760px; padding: 32px 16px 64px; font: 16px/1.75 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+  header { display: flex; align-items: center; gap: 16px; }
+  header img { width: 80px; height: 80px; }
+  h1 { margin: 0; font-size: 2em; }
+  header p { margin: 0; color: var(--sub); }
+  h2 { margin-top: 2.2em; padding-bottom: 4px; border-bottom: 1px solid var(--line); font-size: 1.3em; }
+  a { color: var(--link); }
+  .download { display: inline-block; margin: 8px 0; padding: 10px 20px; border-radius: 6px; background: var(--accent); color: #fff; font-weight: bold; text-decoration: none; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95em; }
+  th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  .wrap { overflow-x: auto; }
+  code { padding: 1px 4px; border-radius: 4px; background: var(--code); font-size: 0.9em; word-break: break-all; }
+  footer { margin-top: 48px; color: var(--sub); font-size: 0.9em; }
+</style>
+</head>
+<body>
+<header>
+  <img src="icon.svg" alt="">
+  <div>
+    <h1>WPHI</h1>
+    <p>PHI のクライアント</p>
+  </div>
+</header>
+
+<p>
+Windows 用だった Philly を作り直し、Windows・macOS・Linux で動くようにした。<br>
+Philly のキー操作、メニュー、スキン、キャラグラをそのまま使える。
+</p>
+
+<h2>ダウンロード</h2>
+<a class="download" href="https://github.com/s7k/wphi/releases/latest">最新の版を取得する</a>
+<p>開いたページから、OS に合ったファイルを取得する。</p>
+<div class="wrap">
+<table>
+  <tr><th>OS</th><th>ファイル</th><th>使い方</th></tr>
+  <tr><td>Windows</td><td><code>WPHI-&lt;版&gt;-windows.zip</code></td><td>展開して <code>WPHI.exe</code> を起動する</td></tr>
+  <tr><td>Windows</td><td><code>WPHI_&lt;版&gt;_x64-setup.exe</code></td><td>インストーラ</td></tr>
+  <tr><td>macOS</td><td><code>WPHI-&lt;版&gt;-macos.zip</code>、<code>WPHI_&lt;版&gt;_universal.dmg</code></td><td>Intel と Apple Silicon の両方で動く</td></tr>
+  <tr><td>Linux</td><td><code>WPHI-&lt;版&gt;-linux.zip</code>(AppImage)、<code>WPHI_&lt;版&gt;_amd64.deb</code></td><td></td></tr>
+</table>
+</div>
+
+<h2>初めて開く時</h2>
+<p>どのファイルも署名していないので、OS が警告を出す。</p>
+<ul>
+  <li>Windows: SmartScreen の警告で「詳細情報」を押し、「実行」を選ぶ</li>
+  <li>macOS: ターミナルで <code>xattr -dr com.apple.quarantine WPHI.app</code> を実行して、隔離属性を外してから開く</li>
+  <li>Linux: AppImage は FUSE(Ubuntu では <code>libfuse2</code>)が要る。無い時は <code>APPIMAGE_EXTRACT_AND_RUN=1</code> を付けて起動する</li>
+</ul>
+<p>新しい版が出ると、起動した時に知らせる。自動では入れ替えないので、このページから取得し直す。</p>
+
+<h2>始め方</h2>
+<ul>
+  <li>Philly を使っていたなら、「Philly から取り込む」で Philly のフォルダを指定する。登録したキャラと設定を取り込み、Philly のキャラグラとマップチップも使う</li>
+  <li>新しく始めるなら、「新規キャラ作成」で世界を選び、名前・パスワード・初期グラを決めて作る</li>
+  <li>キャラ ID が分かっていれば、「キャラを登録」で表示名・ID・接続先を入れる</li>
+</ul>
+<p>キャラを選ぶと接続し、タブが1つ開く。キャラごとにタブを開いて、同時に何人でも遊べる。</p>
+
+<h2>Philly に無い機能</h2>
+<ul>
+  <li>macOS と Linux で動く。macOS では窓の中にもメニューを出す</li>
+  <li>キャラグラとマップチップを、メニューの「ツール」から配布元を選んで取得出来る</li>
+  <li>拡張マップ: 通った所の地形を覚えて、地図の外に重ねて出す</li>
+  <li>位置の予想: 地図が届くのが遅れても、進んだとみなして地図をずらす(拡張マップの付属)</li>
+  <li>地図の拡大率を % で指定出来る</li>
+  <li>看板のエディタに、色・大きさ・フォントのタグを付けるボタンがある</li>
+  <li>窓の位置と大きさを覚える。ログの窓を最小化すると、地図の窓も一緒に最小化する</li>
+</ul>
+
+<h2>資料</h2>
+<ul>
+  <li><a href="https://github.com/s7k/wphi">ソースコード(GitHub)</a></li>
+  <li><a href="https://github.com/s7k/wphi#readme">README</a>: キー操作、設定の置き場、開発の手順</li>
+  <li><a href="https://github.com/s7k/wphi/blob/main/docs/04-client-spec.md">クライアントの要件と挙動</a>: サーバとのやり取り、キー、リスト、魔法。他の言語でクライアントを作る人の為の資料</li>
+  <li><a href="https://github.com/s7k/wphi/issues">不具合の報告(Issues)</a></li>
+</ul>
+
+<footer>
+コードは MIT ライセンス。同梱のグラフィックスのライセンスは <a href="https://github.com/s7k/wphi/blob/main/resources/phi/README.md">resources/phi/README.md</a> に従う。<br>
+<a href="../">s7k</a>
+</footer>
+</body>
+</html>
