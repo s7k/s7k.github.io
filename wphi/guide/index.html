@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WPHI 利用者ガイド</title>
+<meta name="description" content="PHI のクライアント WPHI の使い方です。キャラの登録から画面の見方、キー操作、設定までを画像付きで説明します。">
+<link rel="icon" href="../icon.svg">
+<style>
+  :root { color-scheme: light dark; --fg: #222; --bg: #fff; --sub: #666; --line: #ddd; --link: #0a58ca; --accent: #b3261e; --code: #f3f3f3; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #ddd; --bg: #16181c; --sub: #999; --line: #333; --link: #79a8ff; --accent: #e5554b; --code: #23262b; } }
+  body { margin: 0 auto; max-width: 860px; padding: 32px 16px 64px; font: 16px/1.75 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+  header { display: flex; align-items: center; gap: 16px; }
+  header img { width: 64px; height: 64px; }
+  h1 { margin: 0; font-size: 1.8em; }
+  header p { margin: 0; color: var(--sub); }
+  h2 { margin-top: 2.4em; padding-bottom: 4px; border-bottom: 1px solid var(--line); font-size: 1.3em; }
+  h3 { margin-top: 1.6em; font-size: 1.05em; }
+  a { color: var(--link); }
+  nav ol { padding-left: 1.4em; columns: 2; column-gap: 32px; }
+  @media (max-width: 560px) { nav ol { columns: 1; } }
+  figure { margin: 16px 0 24px; }
+  figure img { display: block; max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 4px; }
+  figcaption { margin-top: 4px; color: var(--sub); font-size: 0.9em; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95em; }
+  th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  .wrap { overflow-x: auto; }
+  code, kbd { padding: 1px 4px; border-radius: 4px; background: var(--code); font-size: 0.9em; word-break: break-all; }
+  .note { padding: 8px 12px; border-left: 4px solid var(--line); color: var(--sub); }
+  footer { margin-top: 48px; color: var(--sub); font-size: 0.9em; }
+</style>
+</head>
+<body>
+<header>
+  <img src="../icon.svg" alt="">
+  <div>
+    <h1>WPHI 利用者ガイド</h1>
+    <p>PHI のクライアント WPHI の使い方</p>
+  </div>
+</header>
+
+<p class="note">
+画像は説明の為に作った架空の世界とキャラで撮りました。<br>
+実際の世界では、その世界のマップチップとキャラグラで表示します。
+</p>
+
+<nav>
+<ol>
+  <li><a href="#install">取得と起動</a></li>
+  <li><a href="#characters">キャラの登録と接続</a></li>
+  <li><a href="#download">キャラグラとマップチップの取得</a></li>
+  <li><a href="#screen">画面の見方</a></li>
+  <li><a href="#talk">発言と priv</a></li>
+  <li><a href="#board">看板を書く</a></li>
+  <li><a href="#find">ログの検索</a></li>
+  <li><a href="#keys">主なキー操作</a></li>
+  <li><a href="#map">地図の表示</a></li>
+  <li><a href="#settings">設定</a></li>
+  <li><a href="#help">困った時は</a></li>
+</ol>
+</nav>
+
+<h2 id="install">1. 取得と起動</h2>
+<p>
+<a href="../">WPHI のページ</a>の「最新の版を取得する」から、OS に合ったファイルを取得してください。<br>
+Windows・macOS・Linux の版があります。
+</p>
+<p>
+どのファイルも署名していないので、初めて開く時に OS が警告を出します。<br>
+開き方は WPHI のページの「<a href="../#first-run">初めて開く時</a>」に書いています。
+</p>
+<p>
+新しい版が出ると、起動した時に知らせます。<br>
+メニューの「ツール」→「新しい版を確かめる」でも確かめる事が出来ます。
+</p>
+
+<h2 id="characters">2. キャラの登録と接続</h2>
+<p>起動すると、キャラを選ぶ画面になります。</p>
+<figure>
+  <img src="images/characters.png" alt="登録したキャラの一覧と、キャラを登録・取り込み・新規作成する欄" width="1000" height="640" loading="lazy">
+  <figcaption>キャラを選ぶ画面。上に登録したキャラ、下に登録の欄が並びます</figcaption>
+</figure>
+<p>始め方は3つあります。</p>
+<ul>
+  <li><strong>Philly を使っていた</strong>: 「Philly から取り込む」に Philly のフォルダ(<code>*.chara</code> のあるフォルダ)を入れ、「取り込む」を押してください。登録していたキャラと設定を取り込み、Philly のキャラグラとマップチップもそのまま使います</li>
+  <li><strong>新しくキャラを作る</strong>: 「新規キャラ作成」で世界を選び、名前とパスワードと初期グラを決めて「作る」を押してください</li>
+  <li><strong>キャラ ID が分かっている</strong>: 「キャラを登録」に表示名と ID を入れ、世界を選んで「登録」を押してください</li>
+</ul>
+<p>
+世界の一覧は、新規接続の設定を配布元から自動で取得して作ります。<br>
+一覧に無い世界は、サーバとポートを直接書いてください。
+</p>
+<p>
+登録したキャラの「接続」を押すと、そのキャラでタブが1つ開きます。<br>
+上の「＋」で別のキャラのタブを開けば、同時に何人でも遊べます。
+</p>
+
+<h2 id="download">3. キャラグラとマップチップの取得</h2>
+<p>
+Philly のフォルダが無い場合は、キャラグラとマップチップを配布元から取得してください。<br>
+メニューの「ツール」→「キャラグラとマップチップを取得する...」で開きます。
+</p>
+<figure>
+  <img src="images/download.png" alt="配布元の一覧と、取得するボタン" width="1000" height="640" loading="lazy">
+  <figcaption>配布元の一覧。取得済みの物と、まだ取得していない物を表示します</figcaption>
+</figure>
+<ul>
+  <li>「全部取得する」で、まだ取得していない物と新しい版が出た物をまとめて取得します</li>
+  <li>1つずつ取得するなら、行の右の「取得する」を押してください</li>
+  <li>取得した画像はすぐに使います。WPHI を起動し直す必要はありません</li>
+</ul>
+
+<h2 id="screen">4. 画面の見方</h2>
+<p>接続すると、ログ・地図・ステータスを表示します。</p>
+<figure>
+  <img src="images/main.png" alt="左に地図、右にログ、下に入力欄がある画面" width="1000" height="640" loading="lazy">
+  <figcaption>接続した画面(地図をログと同じ窓に出した時)</figcaption>
+</figure>
+<div class="wrap">
+<table>
+  <tr><th>場所</th><th>表示する物</th></tr>
+  <tr><td>一番上</td><td>タブ。キャラごとに1つ開きます。× で切断して閉じ、右端の「設定」で設定を開きます</td></tr>
+  <tr><td>左</td><td>地図。真ん中が自分です。外側の少し暗い所は、前に通った時に覚えた地形です(<a href="#map">拡張マップ</a>)</td></tr>
+  <tr><td>地図の右</td><td>上が方角、下が見えているキャラの名前です</td></tr>
+  <tr><td>地図の下</td><td>HP と MP のバー、Fighter・Wizard・Merchant・Creator の値、Gold です。「Status」を押すと、ステータスを詳しくログ欄に出します</td></tr>
+  <tr><td>右</td><td>ログ欄。発言や出来事を時刻付きで表示します</td></tr>
+  <tr><td>ログ欄の下</td><td>切り替えのボタン。大声、全タブ発言、ログを固定、ログ保存、保存先(ログのフォルダを開く)、priv があります</td></tr>
+  <tr><td>一番下</td><td>入力欄。発言やコマンドを書いて Enter で送ります</td></tr>
+</table>
+</div>
+<p>
+地図は最初、別の窓に出ます。<br>
+この画像のようにログと同じ窓に出すには、メニューの「表示」→「マップをログと同じ窓に出す(試験中)」を選んでください。
+</p>
+
+<h2 id="talk">5. 発言と priv</h2>
+<p>
+入力欄に書いて Enter を押すと発言します。<br>
+Shift+Enter で改行し、Ctrl+Enter でパーティーに発言します。
+</p>
+<ul>
+  <li><strong>大声</strong>: ログ欄の下の「大声」を押してから発言します。送る前に確かめる窓が出ます</li>
+  <li><strong>全タブ発言</strong>: 開いている全部のタブのキャラで同じ事を発言します</li>
+</ul>
+<p>priv を受けると、右に priv の欄を開きます。</p>
+<figure>
+  <img src="images/priv.png" alt="右に priv の欄を開いた画面" width="1000" height="640" loading="lazy">
+  <figcaption>priv の欄。相手ごとに会話を分けて表示します</figcaption>
+</figure>
+<p>
+priv の欄の下の入力欄に書くと、選んでいる相手に送ります。<br>
+新しい相手に送るには、相手の名前を選んで「選んだ相手と話す」を押してください。
+</p>
+
+<h2 id="board">6. 看板を書く</h2>
+<p>
+看板の前で <kbd>S</kbd> を押すと、看板のエディタを開きます。<br>
+読むのは <kbd>A</kbd>、消すのは <kbd>D</kbd> です。
+</p>
+<figure>
+  <img src="images/board.png" alt="色や大きさのボタンと、書いた看板の見え方を出したエディタ" width="1000" height="640" loading="lazy">
+  <figcaption>看板のエディタ。下に、書いた看板の見え方を表示します</figcaption>
+</figure>
+<ul>
+  <li>文字を選んで色の四角を押すと、その色のタグで囲みます。一番右の四角では好きな色を選べます</li>
+  <li>大きさ、太字、斜体、取り消し線、下線、上付き、下付きのボタンがあります</li>
+  <li>「フォント」から書体を選べます。読む人の OS に無い書体は、読む人の既定の書体で表示します</li>
+  <li>「送信」か Shift+Enter で看板に書きます</li>
+</ul>
+
+<h2 id="find">7. ログの検索</h2>
+<p>
+<kbd>Ctrl</kbd>+<kbd>F</kbd>(macOS は <kbd>Cmd</kbd>+<kbd>F</kbd>)で、ログ欄の右上に検索の欄を開きます。<br>
+メニューの「操作」→「ログを検索」でも開けます。
+</p>
+<figure>
+  <img src="images/find.png" alt="Kotone で検索し、当たった行に色を付けたログ欄" width="1000" height="640" loading="lazy">
+  <figcaption>当たった行を薄い黄色、今見ている行をオレンジ色で表示します</figcaption>
+</figure>
+<ul>
+  <li>最初は一番新しい行を表示します。Enter で古い方へ、Shift+Enter で新しい方へ移ります</li>
+  <li>大文字と小文字は区別しません</li>
+  <li>検索の欄を開いている間は、新しいログが届いてもログ欄を下へ送りません</li>
+  <li>Esc で閉じます</li>
+</ul>
+<p>探せるのはログ欄に残っている行だけです。<br>
+古いログは、ログを保存しておけばファイルで探せます。</p>
+
+<h2 id="keys">8. 主なキー操作</h2>
+<p>
+キー操作は Philly と同じです。<br>
+入力欄にいる時は文字を書くので、移動などに使う時は Esc でログ欄へ移ってください。
+</p>
+<div class="wrap">
+<table>
+  <tr><th>キー</th><th>動作</th></tr>
+  <tr><td>テンキー、矢印(フルキー移動なら U I O J K L M 7 8 9)</td><td>移動</td></tr>
+  <tr><td>Esc</td><td>入力欄からログ欄へ移り、キーを操作に使う</td></tr>
+  <tr><td>Tab</td><td>入力欄へ移る</td></tr>
+  <tr><td>Z、X、C</td><td>アイテムを拾う、置く、使う</td></tr>
+  <tr><td>Space</td><td>攻撃</td></tr>
+  <tr><td>A、S、D</td><td>看板を読む、書く、消す</td></tr>
+  <tr><td>Alt+W、Alt+E など</td><td>系統魔法(Wizard eye、Eagle eye など)</td></tr>
+  <tr><td>Shift+F5</td><td>地図の窓を出す、隠す</td></tr>
+  <tr><td>T、Shift+T</td><td>回転する地図、北固定の地図</td></tr>
+  <tr><td>Ctrl+Tab</td><td>次のタブ</td></tr>
+  <tr><td>Ctrl+F(macOS は Cmd+F)</td><td>ログを検索</td></tr>
+</table>
+</div>
+<p>全部のキーは<a href="https://github.com/s7k/wphi/blob/main/docs/04-client-spec.md">クライアントの要件と挙動</a>の「キー操作」に書いています。</p>
+
+<h2 id="map">9. 地図の表示</h2>
+<p>地図の表示はメニューの「表示」で切り替えます。</p>
+<ul>
+  <li><strong>回転する地図と北固定の地図</strong>: <kbd>T</kbd> で自分の向きが上になる地図、<kbd>Shift</kbd>+<kbd>T</kbd> で北が上の地図にします</li>
+  <li><strong>拡張マップ</strong>: 通った所の地形を覚えて、7x7 の地図の外側に少し暗くして重ねます。サーバが自分の位置の座標を送る世界でだけ使えます(今は朱蓮の系統の世界)</li>
+  <li><strong>位置の予想</strong>: 地図が届くのが遅れた時も、進んだとみなして地図をずらします。拡張マップと一緒に動きます</li>
+  <li><strong>地図の拡大率</strong>: <a href="#settings">設定</a>の「マップの拡大率」で % を指定します</li>
+</ul>
+
+<h2 id="settings">10. 設定</h2>
+<p>タブの右端の「設定」で開きます。</p>
+<figure>
+  <img src="images/settings.png" alt="キー操作、効果音、ログ、ファンクションキーの設定" width="1000" height="640" loading="lazy">
+  <figcaption>設定の画面</figcaption>
+</figure>
+<ul>
+  <li>フルキー移動、効果音、ログの保存形式、ログの文字の書体と大きさを設定します</li>
+  <li>F8〜F12 と Alt+G に、押した時に送る言葉を設定します。<code>\n</code> で改行します</li>
+  <li>「Philly.ini から取り込む」で、Philly の設定を取り込めます</li>
+</ul>
+<p>
+設定とキャラの情報は、設定フォルダに置きます。<br>
+メニューの「ツール」→「設定フォルダを開く」で開けます。
+</p>
+<p>
+設定フォルダにはキャラ ID も平文で入っています。<br>
+設定フォルダを他人に渡さないでください。
+</p>
+
+<h2 id="help">11. 困った時は</h2>
+<ul>
+  <li><strong>窓が画面の外に出て見えない</strong>: メニューの「ツール」→「窓の位置を元に戻す(安心ボタン)」を選んでください</li>
+  <li><strong>キャラやマップチップが四角や別の絵になる</strong>: <a href="#download">キャラグラとマップチップを取得</a>してください。自分で画像を足した時は、「ツール」→「画像を読み直す」で読み直します</li>
+  <li><strong>不具合を見つけた</strong>: <a href="https://github.com/s7k/wphi/issues">GitHub の Issues</a> に書いてください</li>
+</ul>
+
+<footer>
+<a href="../">WPHI のページへ戻る</a>
+</footer>
+</body>
+</html>
