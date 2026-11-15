@@ -26,6 +26,9 @@
   th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
   .wrap { overflow-x: auto; }
   code, kbd { padding: 1px 4px; border-radius: 4px; background: var(--code); font-size: 0.9em; word-break: break-all; }
+  .fx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 16px; }
+  .fx-grid figure { margin: 8px 0; }
+  .fx-grid figcaption { font-size: 0.92em; }
   .note { padding: 8px 12px; border-left: 4px solid var(--line); color: var(--sub); }
   footer { margin-top: 48px; color: var(--sub); font-size: 0.9em; }
 </style>
@@ -55,6 +58,7 @@
   <li><a href="#find">ログの検索</a></li>
   <li><a href="#keys">主なキー操作</a></li>
   <li><a href="#map">地図の表示</a></li>
+  <li><a href="#effects">地図の演出</a></li>
   <li><a href="#settings">設定</a></li>
   <li><a href="#help">困った時は</a></li>
 </ol>
@@ -218,7 +222,51 @@ priv の欄の下の入力欄に書くと、選んでいる相手に送ります
   <li><strong>地図の拡大率</strong>: <a href="#settings">設定</a>の「マップの拡大率」で % を指定します</li>
 </ul>
 
-<h2 id="settings">10. 設定</h2>
+<h2 id="effects">10. 地図の演出</h2>
+<p>
+ログに流れた発言や戦闘の行を読み取り、地図のキャラの上に吹き出しや数字を出します。<br>
+メニューの「表示」→「吹き出しと HP・MP の増減をマップに出す」で切り替えます。
+</p>
+<div class="fx-grid">
+  <figure>
+    <img src="images/effect-talk.png" alt="Kotone と市場の猫の上に出た吹き出し" width="300" height="170" loading="lazy">
+    <figcaption><strong>発言</strong>: 発言と priv を、話したキャラの上に吹き出しで出します。4秒で消えます</figcaption>
+  </figure>
+  <figure>
+    <img src="images/effect-slash.png" alt="攻撃を受けた猫の上の弧と、黄色の数字 12" width="300" height="170" loading="lazy">
+    <figcaption><strong>武器の攻撃</strong>: 攻撃を受けたキャラの上に弧を出し、減った HP を黄色の数字で出します</figcaption>
+  </figure>
+  <figure>
+    <img src="images/effect-bolt.png" alt="Kotone から猫へ飛ぶ水色の魔法弾" width="300" height="170" loading="lazy">
+    <figcaption><strong>魔法の攻撃</strong>: 唱えた呪文で攻撃した時は、唱えたキャラから魔法弾が飛びます</figcaption>
+  </figure>
+  <figure>
+    <img src="images/effect-heal.png" alt="Mirai の上の緑の +40 と、猫の上の水色の +8" width="300" height="170" loading="lazy">
+    <figcaption><strong>回復</strong>: 回復した HP を緑、MP を水色の数字で出します。減った MP は紫です</figcaption>
+  </figure>
+  <figure>
+    <img src="images/effect-status.png" alt="Mirai の上の MISS、猫の上の毒、Kotone の上の麻痺" width="300" height="170" loading="lazy">
+    <figcaption><strong>ミス・毒・麻痺</strong>: ミスした時は攻撃した側に MISS を出します。毒と麻痺は、受けたキャラにその文字を出します</figcaption>
+  </figure>
+  <figure>
+    <img src="images/effect-dead.png" alt="猫のいたマスが白く光っている" width="300" height="170" loading="lazy">
+    <figcaption><strong>倒された時</strong>: 倒されたキャラのマスが光り、上へ薄れて消えます</figcaption>
+  </figure>
+  <figure>
+    <img src="images/effect-buff.png" alt="Mirai の攻撃力↑と Kotone の防御率↑、足元の金色の光" width="300" height="170" loading="lazy">
+    <figcaption><strong>強化</strong>: 攻撃力などが上がると、足元から金色の光が立ち上ります。仲間にかけた時は仲間に出ます</figcaption>
+  </figure>
+  <figure>
+    <img src="images/effect-debuff.png" alt="猫の上の速度↓と青い光" width="300" height="170" loading="lazy">
+    <figcaption><strong>弱体</strong>: 速度などが下がると、青い光が上から沈みます</figcaption>
+  </figure>
+</div>
+<p class="note">
+演出はログの文面から決めています。サーバによって文面が違うと、出ない演出があります。<br>
+同じ名前のキャラが複数いる時は、自分に一番近いキャラに出します。
+</p>
+
+<h2 id="settings">11. 設定</h2>
 <p>タブの右端の「設定」で開きます。</p>
 <figure>
   <img src="images/settings.png" alt="キー操作、効果音、ログ、ファンクションキーの設定" width="1000" height="640" loading="lazy">
@@ -238,7 +286,7 @@ priv の欄の下の入力欄に書くと、選んでいる相手に送ります
 設定フォルダを他人に渡さないでください。
 </p>
 
-<h2 id="help">11. 困った時は</h2>
+<h2 id="help">12. 困った時は</h2>
 <ul>
   <li><strong>窓が画面の外に出て見えない</strong>: メニューの「ツール」→「窓の位置を元に戻す(安心ボタン)」を選んでください</li>
   <li><strong>キャラやマップチップが四角や別の絵になる</strong>: <a href="#download">キャラグラとマップチップを取得</a>してください。自分で画像を足した時は、「ツール」→「画像を読み直す」で読み直します</li>
