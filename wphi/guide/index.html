@@ -118,7 +118,7 @@ Philly のフォルダが無い場合は、キャラグラとマップチップ�
 <p>接続すると、ログ・地図・ステータスを表示します。</p>
 <figure>
   <img src="images/main.png" alt="左に地図、右にログ、下に入力欄がある画面" width="1000" height="640" loading="lazy">
-  <figcaption>接続した画面(地図をログと同じ窓に出した時)</figcaption>
+  <figcaption>接続した画面(クラシック(1窓)の時)</figcaption>
 </figure>
 <div class="wrap">
 <table>
@@ -132,10 +132,23 @@ Philly のフォルダが無い場合は、キャラグラとマップチップ�
   <tr><td>一番下</td><td>入力欄。発言やコマンドを書いて Enter で送ります</td></tr>
 </table>
 </div>
-<p>
-地図は最初、別の窓に出ます。<br>
-この画像のようにログと同じ窓に出すには、メニューの「表示」→「マップをログと同じ窓に出す(試験中)」を選んでください。
-</p>
+<h3 id="layout">窓の形</h3>
+<p>メニューの「表示」で、窓の形を3つから選びます。</p>
+<ul>
+  <li><strong>クラシック(2窓)</strong>: Philly と同じく、地図とログを別の窓に出します。最初はこの形です</li>
+  <li><strong>クラシック(1窓)</strong>: 上の画像のように、地図をログの左に出します。境目をドラッグすると地図の幅を変えます</li>
+  <li><strong>モダン</strong>: 下の画像のように、地図を窓いっぱいに出し、地名と HP・MP、方角、ログを地図の上に重ねます</li>
+</ul>
+<figure>
+  <img src="images/modern.png" alt="窓いっぱいの地図の左上に地名と HP・MP のバー、左下に白い枠で囲んだログがある画面" width="1000" height="640" loading="lazy">
+  <figcaption>モダンの画面。ログの文字は白に黒の縁取りで、色の付いた文字は薄い色にします</figcaption>
+</figure>
+<ul>
+  <li>ログの枠の右上の「小・中・大」で、ログの高さを窓の 20%・42%・65% から選びます</li>
+  <li>地図は、v6 に対応したサーバの上限のマス数で窓が埋まるまで拡大します</li>
+  <li>priv の欄は右に重ねて開きます</li>
+  <li>キャラの名前の一覧と、Fighter などの値の欄は出しません。値は <code>check</code> と送ると、ログ欄に出ます</li>
+</ul>
 
 <h2 id="talk">5. 発言と priv</h2>
 <p>
