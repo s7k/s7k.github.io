@@ -4,23 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WPHI</title>
-<meta name="description" content="PHI のクライアントです。Philly を作り直し、Windows・macOS・Linux で動くようにしました。">
+<meta name="description" content="PHI のクライアントです。Philly を作り直し、Windows・macOS・Linux で動くようにしました。v6 に対応した世界では、窓いっぱいの地図で遊べます。">
 <link rel="icon" href="icon.svg">
 <style>
-  :root { color-scheme: light dark; --fg: #222; --bg: #fff; --sub: #666; --line: #ddd; --link: #0a58ca; --accent: #b3261e; --code: #f3f3f3; }
-  @media (prefers-color-scheme: dark) { :root { --fg: #ddd; --bg: #16181c; --sub: #999; --line: #333; --link: #79a8ff; --accent: #e5554b; --code: #23262b; } }
+  :root { color-scheme: light dark; --fg: #222; --bg: #fff; --sub: #666; --line: #ddd; --link: #0a58ca; --accent: #b3261e; --code: #f3f3f3; --cell: #e9eee4; --wait: #c9ccd1; --go: #2e8b57; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #ddd; --bg: #16181c; --sub: #999; --line: #333; --link: #79a8ff; --accent: #e5554b; --code: #23262b; --cell: #26302a; --wait: #4a4e55; --go: #2e8b57; } }
   body { margin: 0 auto; max-width: 760px; padding: 32px 16px 64px; font: 16px/1.75 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
   header { display: flex; align-items: center; gap: 16px; }
   header img { width: 80px; height: 80px; }
   h1 { margin: 0; font-size: 2em; }
   header p { margin: 0; color: var(--sub); }
   h2 { margin-top: 2.2em; padding-bottom: 4px; border-bottom: 1px solid var(--line); font-size: 1.3em; }
+  h3 { margin-top: 1.8em; font-size: 1.1em; }
   a { color: var(--link); }
+  .lead { font-size: 1.08em; }
   .download { display: inline-block; margin: 8px 0; padding: 10px 20px; border-radius: 6px; background: var(--accent); color: #fff; font-weight: bold; text-decoration: none; }
+  figure { margin: 16px 0; }
+  figure img, figure svg { display: block; width: 100%; height: auto; border-radius: 6px; }
+  /* 図はスマホの幅で文字が潰れないよう、図の中で横にスクロールさせる */
+  .diagram { overflow-x: auto; }
+  .diagram svg { min-width: 600px; }
+  figure img { border: 1px solid var(--line); }
+  figcaption { margin-top: 4px; color: var(--sub); font-size: 0.92em; }
+  .fx { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0 16px; }
+  .fx figure { margin: 8px 0; }
   table { width: 100%; border-collapse: collapse; font-size: 0.95em; }
   th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  td.v6 { font-weight: bold; }
   .wrap { overflow-x: auto; }
   code { padding: 1px 4px; border-radius: 4px; background: var(--code); font-size: 0.9em; word-break: break-all; }
+  .note { padding: 8px 12px; border-left: 4px solid var(--line); color: var(--sub); }
+  svg text { fill: var(--fg); font: 13px system-ui, sans-serif; }
+  svg .sub { fill: var(--sub); font-size: 12px; }
   footer { margin-top: 48px; color: var(--sub); font-size: 0.9em; }
 </style>
 </head>
@@ -33,14 +48,158 @@
   </div>
 </header>
 
-<p>
+<p class="lead">
 Windows 用だった Philly を作り直し、Windows・macOS・Linux で動くようにしました。<br>
 Philly のキー操作、メニュー、スキン、キャラグラをそのまま使えます。
 </p>
+<p>
+v6 プロトコルに対応した世界(朱蓮 SYUREN など)では、7x7 マスより広い、窓いっぱいの地図で遊べます。<br>
+キーを押した瞬間に歩き出し、持ち物はカバンの絵で並びます。
+</p>
 
-<h2>ダウンロード</h2>
+<figure>
+  <img src="guide/images/main.png" alt="地図を窓いっぱいに描き、左上に地名と HP・MP、左下にログを重ねた画面" width="1000" height="640">
+  <figcaption>v6 の世界に接続した画面。地図の上に地名、HP・MP、ログを重ねます(画像は説明用の架空の世界です)</figcaption>
+</figure>
+
 <a class="download" href="https://github.com/s7k/wphi/releases/latest">最新の版を取得する</a>
 <p>使い方は<a href="guide/">利用者ガイド</a>に画像付きで書いています。</p>
+
+<h2 id="v6">v6 の世界で変わる事</h2>
+
+<h3>見える範囲</h3>
+<p>
+Philly で見えるのは、自分を真ん中にした 7x7 マスです。<br>
+v6 の世界では、WPHI は窓に入るだけのマスを描きます。
+</p>
+<p>
+窓を広げると、その分だけ遠くまで見えます。<br>
+最大は 99x99 マスで、世界によっては狭めています。
+</p>
+<figure>
+  <div class="diagram"><svg viewBox="0 0 720 270" role="img" aria-label="7x7 マスの範囲と、横 33 縦 17 マスの範囲を同じマスの大きさで並べた図。広い範囲の真ん中に 7x7 の枠がある">
+    <defs>
+      <pattern id="grid" width="12" height="12" patternUnits="userSpaceOnUse">
+        <rect width="12" height="12" fill="var(--cell)"/>
+        <path d="M12 0H0V12" fill="none" stroke="var(--sub)" stroke-opacity="0.35" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <text x="20" y="80">Philly</text>
+    <text x="20" y="196" class="sub">7x7 = 49 マス</text>
+    <rect x="20" y="92" width="84" height="84" fill="url(#grid)" stroke="var(--sub)"/>
+    <circle cx="62" cy="134" r="4.5" fill="var(--accent)"/>
+    <text x="150" y="24">WPHI と v6 の世界(例: 横 33 縦 17 = 561 マス)</text>
+    <rect x="150" y="34" width="396" height="204" fill="url(#grid)" stroke="var(--sub)"/>
+    <rect x="306" y="94" width="84" height="84" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+    <circle cx="348" cy="136" r="4.5" fill="var(--accent)"/>
+    <text x="150" y="258" class="sub">赤い枠が Philly で見える 7x7。赤い点が自分です</text>
+    <text x="566" y="120" class="sub">窓を広げると、</text>
+    <text x="566" y="138" class="sub">見える範囲も広がる</text>
+    <path d="M560 160h120M672 154l8 6-8 6" fill="none" stroke="var(--sub)" stroke-width="1.5"/>
+  </svg></div>
+  <figcaption>同じ大きさのマスで描いた見える範囲。v6 の側の数は、窓の大きさと拡大率で変わります</figcaption>
+</figure>
+<p>
+壁に囲まれて見えない所(違う階になった建物の中)には屋根を乗せて描きます。<br>
+広い地図の中に真っ黒の穴が空いて見える事はありません。
+</p>
+
+<h3>歩き出すまでの待ち</h3>
+<p>
+Philly はキーを押すとサーバへ送り、新しい地図が届いてから絵を切り替えます。<br>
+サーバまでの往復が遅いと、その分だけ歩き出しが遅れます。
+</p>
+<p>
+v6 の世界では、WPHI はキーを押した瞬間に地図を滑らせて1マス進みます。<br>
+サーバの返事は歩きながら受け取ります。
+</p>
+<figure>
+  <div class="diagram"><svg viewBox="0 0 720 190" role="img" aria-label="キーを押してから1マス動くまでの時間の図。v6 でない世界ではサーバの往復を待ってから動き、v6 の世界では押した瞬間に動く">
+    <line x1="150" y1="20" x2="150" y2="160" stroke="var(--sub)" stroke-dasharray="3 3"/>
+    <text x="134" y="178" class="sub">キーを押す</text>
+    <text x="10" y="56">v6 でない世界</text>
+    <rect x="150" y="38" width="300" height="26" rx="4" fill="var(--wait)"/>
+    <text x="162" y="56">送信して、地図が届くまで待つ</text>
+    <rect x="450" y="38" width="160" height="26" rx="4" fill="var(--go)"/>
+    <text x="462" y="56" style="fill:#fff">1マス動く</text>
+    <text x="10" y="116">v6 の世界</text>
+    <rect x="150" y="98" width="160" height="26" rx="4" fill="var(--go)"/>
+    <text x="162" y="116" style="fill:#fff">すぐ1マス動く</text>
+    <rect x="150" y="132" width="300" height="10" rx="3" fill="var(--wait)"/>
+    <text x="458" y="142" class="sub">サーバの返事は歩きながら受け取る</text>
+  </svg></div>
+  <figcaption>キーを押してから1マス動くまで。灰色の長さはサーバまでの往復で変わります</figcaption>
+</figure>
+<p>
+長押しで歩く間は、1歩を滑りきってから次の1歩へ進むので、止まらずに動きます。<br>
+地図を滑らせるのは、メニューの「表示」→「マップを滑らかに動かす(試験中)」を選んだ時です。
+</p>
+
+<h3>カバン</h3>
+<p>
+右上のリュックのボタンで、手持ちの 8 個と、どこでも出し入れできるインベントリ(預かり所の中身)を開きます。<br>
+武器の種類と用途で絵が変わり、地の色は属性で変わります。
+</p>
+<figure>
+  <img src="guide/images/bag.png" alt="カバンの画面。上に手持ちの 8 枠、下にインベントリの中身、選んだ剣の詳しい情報と操作のボタン" width="1000" height="640" loading="lazy">
+  <figcaption>カバン。物を選ぶと攻撃力や重さを出し、使う・装備する・外す・置く・出し入れが出来ます</figcaption>
+</figure>
+
+<h2 id="effects">地図の上の吹き出しと数字</h2>
+<p>
+ログに流れた発言や戦闘の行を読み取り、地図のキャラの上に吹き出しや数字を出します。<br>
+誰が話したのか、誰がどれだけ削られたのかを、ログを読まずに地図で追えます。
+</p>
+<div class="fx">
+  <figure>
+    <img src="guide/images/effect-talk.png" alt="キャラの上に出た発言の吹き出し" width="300" height="170" loading="lazy">
+    <figcaption>発言と priv の吹き出し</figcaption>
+  </figure>
+  <figure>
+    <img src="guide/images/effect-slash.png" alt="攻撃を受けたキャラの上の弧と、減った HP の数字" width="300" height="170" loading="lazy">
+    <figcaption>武器の攻撃と、減った HP</figcaption>
+  </figure>
+  <figure>
+    <img src="guide/images/effect-bolt.png" alt="唱えたキャラから飛ぶ魔法弾" width="300" height="170" loading="lazy">
+    <figcaption>呪文で攻撃した時の魔法弾</figcaption>
+  </figure>
+  <figure>
+    <img src="guide/images/effect-heal.png" alt="回復した HP と MP の数字" width="300" height="170" loading="lazy">
+    <figcaption>回復した HP と MP</figcaption>
+  </figure>
+</div>
+<p class="note">
+演出はログの文面から決めるので、v6 でない世界でも出ます。<br>
+サーバによって文面が違うと、出ない演出があります。
+</p>
+
+<h2 id="compare">Philly との違い</h2>
+<div class="wrap">
+<table>
+  <tr><th></th><th>Philly</th><th>WPHI(v6 でない世界)</th><th>WPHI(v6 の世界)</th></tr>
+  <tr><td>見える範囲</td><td>7x7 マス</td><td>7x7 マス</td><td class="v6">窓いっぱい(最大 99x99 マス)</td></tr>
+  <tr><td>歩き出し</td><td>地図が届いてから</td><td>地図が届いてから滑らせる</td><td class="v6">キーを押した瞬間</td></tr>
+  <tr><td>カバン</td><td>無し</td><td>無し</td><td class="v6">有り</td></tr>
+  <tr><td>吹き出しと HP・MP の数字</td><td>無し</td><td>有り</td><td>有り</td></tr>
+  <tr><td>動く OS</td><td>Windows</td><td colspan="2">Windows、macOS、Linux</td></tr>
+  <tr><td>窓の形</td><td>地図とログが別の窓</td><td colspan="2">地図に重ねる「モダン」と、Philly と同じ「クラシック」から選ぶ</td></tr>
+</table>
+</div>
+
+<h2>どの世界でも使える機能</h2>
+<ul>
+  <li>キャラごとにタブを開いて、同時に何人でも遊べます</li>
+  <li>ログを Ctrl+F(macOS は Cmd+F)で検索出来ます</li>
+  <li>看板の本文を、地図の上の札に色と大きさのタグ付きで出します</li>
+  <li>看板のエディタに、色・大きさ・フォントのタグを付けるボタンがあります。下に、書いた看板の見え方を出します</li>
+  <li>地図をホイール(中ボタン)でクリックすると、マウスポインタの方へ歩き続けます</li>
+  <li>地図の拡大率を 100%・200%・300% から選べます。画面の実際のピクセルで整数倍にするので、ドットが崩れません</li>
+  <li>キャラグラとマップチップを、メニューの「ツール」から配布元を選んで取得出来ます</li>
+  <li>窓の位置と大きさを覚えます</li>
+</ul>
+
+<h2 id="get">ダウンロード</h2>
+<a class="download" href="https://github.com/s7k/wphi/releases/latest">最新の版を取得する</a>
 <p>開いたページから、OS に合ったファイルを取得してください。</p>
 <div class="wrap">
 <table>
@@ -68,19 +227,7 @@ Philly のキー操作、メニュー、スキン、キャラグラをそのま�
   <li>新しく始めるなら、「新規キャラ作成」で世界を選び、名前・パスワード・初期グラを決めて作ってください</li>
   <li>キャラ ID が分かっていれば、「キャラを登録」で表示名・ID・接続先を入れてください</li>
 </ul>
-<p>キャラを選ぶと接続し、タブが1つ開きます。<br>
-キャラごとにタブを開いて、同時に何人でも遊べます。</p>
-
-<h2>Philly に無い機能</h2>
-<ul>
-  <li>macOS と Linux で動きます。macOS では窓の中にもメニューを出します</li>
-  <li>キャラグラとマップチップを、メニューの「ツール」から配布元を選んで取得出来ます</li>
-  <li>拡張マップ: 通った所の地形を覚えて、地図の外に重ねて出します。対応世界のみで使えます(サーバが自分の位置の座標を送る世界。今は朱蓮の系統の世界)</li>
-  <li>位置の予想: 地図が届くのが遅れても、進んだとみなして地図をずらします(拡張マップの付属)</li>
-  <li>地図の拡大率を % で指定出来ます</li>
-  <li>看板のエディタに、色・大きさ・フォントのタグを付けるボタンがあります</li>
-  <li>窓の位置と大きさを覚えます。ログの窓を最小化すると、地図の窓も一緒に最小化します</li>
-</ul>
+<p>キャラを選ぶと接続し、タブが1つ開きます。</p>
 
 <h2>資料</h2>
 <ul>
