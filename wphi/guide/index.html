@@ -196,7 +196,7 @@ v6 の世界では、カバンは世界ごとに使える無限バッグです�
   <img src="images/party-hud.png" alt="右上に出た Kotone と Haru の名前と HP・MP のバー。Haru には毒と盲の札" width="1000" height="640" loading="lazy">
   <figcaption>仲間の HP・MP と状態異常は、いつでも見えます</figcaption>
 </figure>
-<p>この小さな一覧を押すと、パーティの窓を開きます。Esc で閉じます。</p>
+<p>右上の小さな一覧を押すと、パーティの窓を開きます。Esc で閉じます。</p>
 <figure>
   <img src="images/party.png" alt="パーティの窓。自分と仲間 2 人の区域、位置、放置時間、遅延、HP と MP のバー、一番下に脱退のボタン" width="1000" height="640" loading="lazy">
   <figcaption>パーティの窓</figcaption>
@@ -206,10 +206,21 @@ v6 の世界では、カバンは世界ごとに使える無限バッグです�
   <li>HP・MP と状態異常(毒・痺・恐・乱・狂・黙・盲)は、変わる度に描き直します</li>
   <li>「脱退(bye)」を押すと、確かめてからパーティを抜けます</li>
   <li>仲間を左クリックした時は、メニューに「パーティの一覧」を出します</li>
-  <li>仲間だけに発言するには、Ctrl+Enter で送ります。priv の欄の「パーティ」には仲間の発言だけを集め、そこで書くと仲間だけに送ります</li>
+</ul>
+<p>
+パーティに入っている間は、入力欄の上に「全体」「パーティ」のタブが出ます。<br>
+「パーティ」を選ぶと、ログ欄に仲間の発言だけを出し、Enter の発言が仲間だけに届きます。
+</p>
+<figure>
+  <img src="images/party-chat.png" alt="入力欄の上でパーティのタブを選び、ログ欄に Kotone と Haru の発言だけが出ている画面" width="1000" height="640" loading="lazy">
+  <figcaption>パーティのタブ。仲間の発言だけを出します</figcaption>
+</figure>
+<ul>
+  <li>「全体」を見ている間に仲間が発言すると、「パーティ」のタブが赤くなります</li>
+  <li>タブを切り替えずに、Ctrl+Enter で一言だけ仲間に送る事も出来ます</li>
 </ul>
 <p class="note">
-仲間の一覧は v6 の世界でだけ出します。<br>
+仲間の一覧とパーティのタブは v6 の世界でだけ出します。<br>
 隣のキャラを誘うメニューは、v6 でない世界でも使えます。
 </p>
 
@@ -222,15 +233,17 @@ Shift+Enter で改行し、Ctrl+Enter でパーティーに発言します。
   <li><strong>大声</strong>: 入力欄の上の「大声」を押してから発言します。送る前に確かめる窓が出ます</li>
   <li><strong>全タブ発言</strong>: 開いている全部のタブのキャラで同じ事を発言します</li>
 </ul>
-<p>priv を受けると、右に priv の欄を重ねて開きます。</p>
+<p>priv を受けると、相手ごとに小さな窓を開きます。</p>
 <figure>
-  <img src="images/priv.png" alt="右に priv の欄を開いた画面" width="1000" height="640" loading="lazy">
-  <figcaption>priv の欄。相手ごとに会話を分けて表示します</figcaption>
+  <img src="images/priv.png" alt="地図の右上に開いた Sora との priv の窓" width="1000" height="640" loading="lazy">
+  <figcaption>priv の窓。相手ごとに別の窓になります</figcaption>
 </figure>
-<p>
-priv の欄の下の入力欄に書くと、選んでいる相手に送ります。<br>
-新しい相手に送るには、相手の名前を選んで「選んだ相手と話す」を押してください。
-</p>
+<ul>
+  <li>窓の下の入力欄に書くと、その相手に送ります</li>
+  <li>見出しをドラッグすると動かせます。「−」(または見出しのダブルクリック)で畳み、「×」で閉じます。閉じても会話は残ります</li>
+  <li>畳んでいる間に priv が届くと、見出しが赤くなります</li>
+  <li>入力欄の上の「priv」を押すと、会話と相手の一覧を開きます。会話を押すとその窓を開き、相手の名前を選んで「選んだ相手と話す」を押すと新しい相手と話せます</li>
+</ul>
 
 <h2 id="board">9. 看板</h2>
 <p>
